@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .wrapper {
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+
+    button {
+      width: 60px;
+      border: 0;
+      border-radius: 10%;
+      cursor: pointer;
+    }
+
+    .add {
+      background-color:chartreuse;
+    }
+
+    .subtract {
+      margin-left: 1em;
+      background-color:lightcoral ;
+    }
+  </style>
+  <title>Counter</title>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Counter</h1>
+    <p id="count">00</p>
+    <button class="add">+</button>
+    <button class="subtract">-</button>
+    <p>Click to add or subtract, or use the up / down arrow keys.</p>
+  </div>
+
+  <script>
+    let increment = 0;
+    const count = document.getElementById('count');
+    const add = document.querySelector('.add')
+                        .addEventListener('click', plus);
+    const subtract = document.querySelector('.subtract')
+                             .addEventListener('click', minus)
+
+    window.addEventListener("keydown", function (event){
+      if (event.defaultPrevented){
+        return;
+      }
+      switch (event.key) {
+      case "ArrowUp": plus();
+      break;
+      case "ArrowDown": minus();
+      break;
+      default:
+      return;
+    }
+    })
+
+    function plus() {
+      increment++
+      increment < 10 ? count.innerHTML = `0${increment}`: 
+                       count.innerHTML = increment;
+    }
+
+    function minus() {
+      if ( increment <= 0 ) return;
+      else increment--;
+      increment < 10 ? count.innerHTML = `0${increment}`: 
+                       count.innerHTML = increment;
+    };
+  </script>
+</body>
+</html>
